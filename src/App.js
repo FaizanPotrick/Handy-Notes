@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CreateTodos from "./Components/CreateTodos";
-import Navbar from "./Components/Navbar";
 import TodosItem from "./Components/TodosItem";
 import UpdateTodos from "./Components/UpdateTodos";
 
@@ -108,7 +107,20 @@ function App() {
   console.log(search);
   return (
     <div className="overflow-hidden">
-      <Navbar serach={search} searchChange={searchChange} />
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container-fluid">
+          <h1 className="navbar-brand m-0">My Todos</h1>
+          <form className="d-flex">
+            <input
+              className="form-control"
+              name="search"
+              value={search}
+              placeholder="Search"
+              onChange={searchChange}
+            />
+          </form>
+        </div>
+      </nav>
       <div
         className={`alert alert-${color} position-absolute start-50 translate-middle`}
         style={{ zIndex: "500", top: "4vh" }}
@@ -132,7 +144,9 @@ function App() {
         esubmitHandeler={esubmitHandeler}
       />
       <div className="row justify-content-center">
-        <h1 className="text-center">{todos.length === 0 && "No Todo List"}</h1>
+        <h1 className="text-center mt-5">
+          {todos.length === 0 && "No Todo List"}
+        </h1>
         {todos
           .filter((target) => {
             if (search === "") {
@@ -144,6 +158,8 @@ function App() {
             } else if (
               target.tag.toLowerCase().includes(search.toLowerCase())
             ) {
+              return target;
+            } else {
               return target;
             }
           })
