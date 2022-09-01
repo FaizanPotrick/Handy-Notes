@@ -104,7 +104,6 @@ function App() {
   const searchChange = (e) => {
     setSearch(e.target.value);
   };
-  console.log(search);
   return (
     <div className="overflow-hidden">
       <nav className="navbar navbar-dark bg-dark">
