@@ -60,7 +60,7 @@ function App() {
       />
       <div className="row justify-content-center">
         <h1 className="text-center mt-5">
-          {todo.length === 0 && "No Todo List"}
+          {todo.length === 0 && "No Notes Found"}
         </h1>
         {todo
           .filter((target) => {
