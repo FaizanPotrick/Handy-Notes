@@ -71,7 +71,7 @@ function App() {
             ) {
               return target;
             } else {
-              return;
+              return null;
             }
           })
           .map((target) => {
