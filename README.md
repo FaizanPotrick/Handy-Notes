@@ -5,13 +5,13 @@
 ### Why do people like to do lists?
 
 
-With the mountain of works we have to do each day, we can't have an ability to remember all of them. Handy Notes serve as a reminder for what you need to accomplish. When we check things off, it's proof that we were able to get stuff done and that makes us feel good.
+With the mountain of works we have to do each day, we can't have an ability to remember all of them. Handy Notes serve as a reminder for all the tasks you need to accomplish.
 
 
 ## About the Project
 
 
-Handy Notes App is an application specially built to keep track of your tasks that need to be done. This application will be like a task keeper where the user would be able to enter the tasks that they need to do. Once they are done with their tasks they can also remove them from the list.
+Handy Notes App is an application specially built to keep track of your tasks that need to be done. This application will be like a task keeper where the user would be able to enlist the task that they need to perform. Once the task is completed it can be removed from the list.
 
 
 ## Built With
