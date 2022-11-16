@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HANDY NOTES
 
-## Available Scripts
 
-In the project directory, you can run:
+### Why do people like to do lists?
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With the mountain of works we have to do each day, we can't have an ability to remember all of them. Handy Notes serve as a reminder for what you need to accomplish. When we check things off, it's proof that we were able to get stuff done and that makes us feel good.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## About the Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Handy Notes App is an application specially built to keep track of your tasks that need to be done. This application will be like a task keeper where the user would be able to enter the tasks that they need to do. Once they are done with their tasks they can also remove them from the list.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+- [React js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Install [Node js](https://nodejs.org/en/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Install NPM Package
+```bash
+  npm install npm@latest -g
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ ## Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+Steps to install and setup the app are demonstrated with following commands:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Clone the repository
+```bash
+  git clone https://github.com/FaizanPotrick/Handy-Notes.git
+```
+```bash
+  cd Handy-Notes
+```
+ 
+#### Install npm packages
+```bash
+  npm install
+```
 
-### Analyzing the Bundle Size
+#### Run Project
+```bash
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Build Project
+```bash
+  npm run build
+```
 
-### Making a Progressive Web App
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-### Deployment
+#### 1. Fork the repository.
+#### 2. Clone your forked repository to local machine.
+```bash
+git clone https://github.com/FaizanPotrick/Handy-Notes.git
+```
+#### 3. Create a branch 
+```bash
+git checkout -b branchname
+```
+#### 4. Make your changes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### 5. Commit and push your changes
+```bash
+git add . 
+git commit -m 'message'
+git push -u origin branchname
+```
+#### 6. Create a new pull request from the forked repository.
 
-### `npm run build` fails to minify
+#### 7. Wait for your PR review and merge approval!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+
+
+Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See `LICENSE.md` for more information.
+
+## Acknowledgements
+
+
+- [React js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com/)
