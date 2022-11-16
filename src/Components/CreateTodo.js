@@ -1,26 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 
-function UpdateTodos({
-  title,
-  description,
-  tag,
-  esubmitHandeler,
-  etextChange,
-}) {
+function CreateTodo({ todo, setTodo, ShowAlert }) {
+  const [text, setText] = useState({
+    title: "",
+    description: "",
+    tag: "",
+    date: "",
+  });
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setText(() => {
+      return {
+        ...text,
+        [name]: value,
+      };
+    });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setTodo([
+      ...todo,
+      {
+        title: text.title,
+        description: text.description,
+        tag: text.tag,
+        date: new Date().toLocaleTimeString(),
+        id: new Date().getTime().toString(),
+      },
+    ]);
+    setText({
+      title: "",
+      description: "",
+      tag: "",
+    });
+    ShowAlert("Saved");
+  };
   return (
     <form
       className="modal fade"
-      id="updateNotes"
+      id="createNotes"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      onSubmit={esubmitHandeler}
+      onSubmit={submitHandler}
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Edit
+              Add Todo
             </h5>
             <button
               type="button"
@@ -39,8 +69,9 @@ function UpdateTodos({
                 className="form-control"
                 id="title"
                 name="title"
-                value={title}
-                onChange={etextChange}
+                value={text.title}
+                onChange={onChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -51,9 +82,9 @@ function UpdateTodos({
                 className="form-control"
                 id="description"
                 name="description"
-                value={description}
+                value={text.description}
                 rows="3"
-                onChange={etextChange}
+                onChange={onChange}
               ></textarea>
             </div>
             <div className="mb-3">
@@ -65,8 +96,8 @@ function UpdateTodos({
                 className="form-control"
                 id="tag"
                 name="tag"
-                value={tag}
-                onChange={etextChange}
+                value={text.tag}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -75,7 +106,7 @@ function UpdateTodos({
               type="submit"
               className="btn btn-dark"
               data-bs-dismiss="modal"
-              disabled={!title}
+              disabled={!text.title}
             >
               Save
             </button>
@@ -86,4 +117,4 @@ function UpdateTodos({
   );
 }
 
-export default UpdateTodos;
+export default CreateTodo;

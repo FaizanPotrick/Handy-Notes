@@ -1,178 +1,89 @@
 import React, { useState, useEffect } from "react";
-import CreateTodos from "./Components/CreateTodos";
-import TodosItem from "./Components/TodosItem";
-import UpdateTodos from "./Components/UpdateTodos";
+import CreateTodo from "./Components/CreateTodo";
+import TodoItem from "./Components/TodoItem";
+import UpdateTodo from "./Components/UpdateTodo";
 
 function App() {
-  const [text, setText] = useState({
-    title: "",
-    description: "",
-    tag: "",
-    date: "",
-  });
-  const textChange = (e) => {
-    const { value, name } = e.target;
-    setText(() => {
-      return {
-        ...text,
-        [name]: value,
-      };
-    });
-  };
-  const [todos, setTodos] = useState(() => {
-    let savedTodos = localStorage.getItem("todos");
-    if (savedTodos) {
-      return JSON.parse(savedTodos);
-    } else {
-      return [];
-    }
-  });
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  const submitHandeler = (e) => {
-    e.preventDefault();
-    if (text !== "") {
-      setTodos([
-        ...todos,
-        {
-          title: text.title,
-          description: text.description,
-          tag: text.tag,
-          date: new Date().toLocaleTimeString(),
-          id: new Date().getTime().toString(),
-        },
-      ]);
-    }
-    setText({
-      title: "",
-      description: "",
-      tag: "",
-    });
-    showAlert(" Saved");
-  };
-  const deleteHandeler = (e) => {
-    setTodos(todos.filter((el) => el.id !== e.id));
-    showAlert(" Deleted");
-  };
-  const [etext, setEtext] = useState({
-    title: "",
-    description: "",
-    tag: "",
-    date: "",
-  });
-  const etextChange = (e) => {
-    const { value, name } = e.target;
-    setEtext(() => {
-      return {
-        ...etext,
-        [name]: value,
-      };
-    });
-  };
-  const editHandeler = (e) => {
-    setEtext({
-      ...text,
-      title: e.title,
-      description: e.description,
-      tag: e.tag,
-      date: new Date().toLocaleTimeString(),
-      id: e.id,
-    });
-  };
-  const esubmitHandeler = (e) => {
-    e.preventDefault();
-    setTodos(
-      todos.map((todo) => {
-        return todo.id === etext.id ? etext : todo;
-      })
-    );
-    showAlert(" Updated");
-  };
-  const [alert, setAlert] = useState(null);
-  const [color, setColor] = useState(null);
-
-  const showAlert = (s) => {
-    setColor("success");
-    setAlert("To-do has been successfully" + s);
-    setTimeout(() => {
-      setAlert(null);
-      setColor(null);
-    }, 2000);
-  };
+  const [todo, setTodo] = useState(
+    localStorage.getItem("todo") ? JSON.parse(localStorage.getItem("todo")) : []
+  );
   const [search, setSearch] = useState("");
-  const searchChange = (e) => {
-    setSearch(e.target.value);
+  const [alert, setAlert] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  }, [todo]);
+
+  const [editText, setEditText] = useState({
+    title: "",
+    description: "",
+    tag: "",
+    date: "",
+  });
+
+  const ShowAlert = (s) => {
+    setAlert("Todo has been successfully " + s);
+    setTimeout(() => {
+      setAlert("");
+    }, 3000);
   };
+
   return (
     <div className="overflow-hidden">
-      <nav className="navbar navbar-dark bg-dark">
-        <div className="container-fluid">
-          <h1 className="navbar-brand m-0">My Todos</h1>
-          <form className="d-flex">
-            <input
-              className="form-control"
-              name="search"
-              value={search}
-              placeholder="Search"
-              onChange={searchChange}
-            />
-          </form>
+      <nav className="navbar navbar-dark d-flex justify-content-between align-items-center bg-dark px-3">
+        <h2 className="text-white">My Notes</h2>
+        <div>
+          <input
+            className="form-control"
+            name="search"
+            value={search}
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
       </nav>
-      <div
-        className={`alert alert-${color} position-absolute start-50 translate-middle`}
-        style={{ zIndex: "500", top: "4vh" }}
-      >
-        {alert}
-      </div>
-      <CreateTodos
-        textChange={textChange}
-        title={text.title}
-        description={text.description}
-        tag={text.tag}
-        submitHandeler={submitHandeler}
-        showAlert={showAlert}
-      />
-      <UpdateTodos
-        etextChange={etextChange}
-        title={etext.title}
-        description={etext.description}
-        tag={etext.tag}
-        etext={etext}
-        esubmitHandeler={esubmitHandeler}
+      {alert && (
+        <div
+          className="alert alert-success position-absolute start-50 translate-middle"
+          style={{ zIndex: "500", top: "4vh" }}
+        >
+          {alert}
+        </div>
+      )}
+      <CreateTodo todo={todo} setTodo={setTodo} ShowAlert={ShowAlert} />
+      <UpdateTodo
+        editText={editText}
+        setEditText={setEditText}
+        todo={todo}
+        setTodo={setTodo}
+        ShowAlert={ShowAlert}
       />
       <div className="row justify-content-center">
         <h1 className="text-center mt-5">
-          {todos.length === 0 && "No Todo List"}
+          {todo.length === 0 && "No Todo List"}
         </h1>
-        {todos
+        {todo
           .filter((target) => {
-            if (search === "") {
-              return target;
-            } else if (
-              target.title.toLowerCase().includes(search.toLowerCase())
-            ) {
+            if (target.title.toLowerCase().includes(search.toLowerCase())) {
               return target;
             } else if (
               target.tag.toLowerCase().includes(search.toLowerCase())
             ) {
               return target;
             } else {
-              return target;
+              return;
             }
           })
           .map((target) => {
             return (
-              <TodosItem
-                title={target.title}
-                description={target.description}
-                tag={target.tag}
-                date={target.date}
+              <TodoItem
                 key={target.id}
                 target={target}
-                deleteHandeler={deleteHandeler}
-                editHandeler={editHandeler}
+                editText={editText}
+                setEditText={setEditText}
+                todo={todo}
+                setTodo={setTodo}
+                ShowAlert={ShowAlert}
               />
             );
           })}

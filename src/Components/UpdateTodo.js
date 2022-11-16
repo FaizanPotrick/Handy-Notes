@@ -1,26 +1,39 @@
 import React from "react";
 
-function CreateTodos({
-  title,
-  description,
-  tag,
-  textChange,
-  submitHandeler,
-}) {
+function UpdateTodo({ editText, setEditText, todo, setTodo, ShowAlert }) {
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setEditText(() => {
+      return {
+        ...editText,
+        [name]: value,
+      };
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setTodo(
+      todo.map((item) => {
+        return item.id === editText.id ? editText : item;
+      })
+    );
+    ShowAlert("Updated");
+  };
   return (
     <form
       className="modal fade"
-      id="createNotes"
+      id="updateNotes"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      onSubmit={submitHandeler}
+      onSubmit={onSubmit}
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Todos
+              Edit Todo
             </h5>
             <button
               type="button"
@@ -39,8 +52,8 @@ function CreateTodos({
                 className="form-control"
                 id="title"
                 name="title"
-                value={title}
-                onChange={textChange}
+                value={editText.title}
+                onChange={onChange}
               />
             </div>
             <div className="mb-3">
@@ -51,9 +64,9 @@ function CreateTodos({
                 className="form-control"
                 id="description"
                 name="description"
-                value={description}
+                value={editText.description}
                 rows="3"
-                onChange={textChange}
+                onChange={onChange}
               ></textarea>
             </div>
             <div className="mb-3">
@@ -65,8 +78,8 @@ function CreateTodos({
                 className="form-control"
                 id="tag"
                 name="tag"
-                value={tag}
-                onChange={textChange}
+                value={editText.tag}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -75,7 +88,7 @@ function CreateTodos({
               type="submit"
               className="btn btn-dark"
               data-bs-dismiss="modal"
-              disabled={!title}
+              disabled={!editText.title}
             >
               Save
             </button>
@@ -86,4 +99,4 @@ function CreateTodos({
   );
 }
 
-export default CreateTodos;
+export default UpdateTodo;
